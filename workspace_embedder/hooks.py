@@ -25,12 +25,10 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-app_include_css = [
-    "/assets/workspace_embedder/css/page_embed.css"
-]
+app_include_css = ["/assets/workspace_embedder/css/page_embed.css"]
 app_include_js = [
-    "/assets/workspace_embedder/js/page_embed.js",
-    "/assets/workspace_embedder/js/workspace_extensions.js"
+	"/assets/workspace_embedder/js/page_embed.js",
+	"/assets/workspace_embedder/js/workspace_extensions.js",
 ]
 
 # include js, css files in header of web template
@@ -49,7 +47,7 @@ app_include_js = [
 
 # include js in doctype views
 doctype_js = {
-    "Workspace": "workspace_embedder/frappe_workspace_embedder/doctype/workspace_extension/workspace_extension.js"
+	"Workspace": "workspace_embedder/frappe_workspace_embedder/doctype/workspace_extension/workspace_extension.js"
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -80,17 +78,7 @@ doctype_js = {
 # Fixtures
 # --------
 
-fixtures = [
-    {
-        "doctype": "DocType",
-        "filters": {
-            "name": ["in", [
-                "Page Embed",
-                "Page Embed Permission"
-            ]]
-        }
-    }
-]
+fixtures = [{"doctype": "DocType", "filters": {"name": ["in", ["Page Embed", "Page Embed Permission"]]}}]
 
 # Jinja
 # ----------
@@ -140,11 +128,11 @@ fixtures = [
 # Permissions evaluated in scripted ways
 
 permission_query_conditions = {
-    "Page Embed": "workspace_embedder.workspace_page_embedder.permissions.get_page_embed_conditions"
+	"Page Embed": "workspace_embedder.workspace_page_embedder.permissions.get_page_embed_conditions"
 }
 
 has_permission = {
-    "Page Embed": "workspace_embedder.workspace_page_embedder.permissions.has_page_embed_permission"
+	"Page Embed": "workspace_embedder.workspace_page_embedder.permissions.has_page_embed_permission"
 }
 
 # DocType Class
@@ -197,7 +185,7 @@ has_permission = {
 # ------------------------------
 
 override_whitelisted_methods = {
-    "frappe.desk.form.utils.get_doctype_json": "workspace_embedder.workspace_page_embedder.api.override_get_doctype_json"
+	"frappe.desk.form.utils.get_doctype_json": "workspace_embedder.workspace_page_embedder.api.override_get_doctype_json"
 }
 #
 # each overriding function accepts a `data` argument;
@@ -268,4 +256,3 @@ override_whitelisted_methods = {
 # ------------
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
-
