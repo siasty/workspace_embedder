@@ -25,8 +25,13 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/workspace_embedder/css/workspace_embedder.css"
-# app_include_js = "/assets/workspace_embedder/js/workspace_embedder.js"
+app_include_css = [
+    "/assets/workspace_embedder/css/page_embed.css"
+]
+app_include_js = [
+    "/assets/workspace_embedder/js/page_embed.js",
+    "/assets/workspace_embedder/js/workspace_extensions.js"
+]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/workspace_embedder/css/workspace_embedder.css"
@@ -43,7 +48,9 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+    "Workspace": "workspace_embedder/frappe_workspace_embedder/doctype/workspace_extension/workspace_extension.js"
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -69,6 +76,21 @@ app_license = "mit"
 
 # automatically create page for each record of this doctype
 # website_generators = ["Web Page"]
+
+# Fixtures
+# --------
+
+fixtures = [
+    {
+        "doctype": "DocType",
+        "filters": {
+            "name": ["in", [
+                "Page Embed",
+                "Page Embed Permission"
+            ]]
+        }
+    }
+]
 
 # Jinja
 # ----------
@@ -117,13 +139,13 @@ app_license = "mit"
 # -----------
 # Permissions evaluated in scripted ways
 
-# permission_query_conditions = {
-# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-# }
-#
-# has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
-# }
+permission_query_conditions = {
+    "Page Embed": "workspace_embedder.workspace_page_embedder.permissions.get_page_embed_conditions"
+}
+
+has_permission = {
+    "Page Embed": "workspace_embedder.workspace_page_embedder.permissions.has_page_embed_permission"
+}
 
 # DocType Class
 # ---------------
@@ -173,10 +195,10 @@ app_license = "mit"
 
 # Overriding Methods
 # ------------------------------
-#
-# override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "workspace_embedder.event.get_events"
-# }
+
+override_whitelisted_methods = {
+    "frappe.desk.form.utils.get_doctype_json": "workspace_embedder.workspace_page_embedder.api.override_get_doctype_json"
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
