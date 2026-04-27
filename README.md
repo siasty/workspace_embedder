@@ -250,8 +250,8 @@ MIT License - see [LICENSE](license.txt) for details.
 
 ## Support
 
-- 📧 Email: admin@techparts.pl
-- 🐛 Issues: [GitHub Issues](https://github.com/techparts/workspace_embedder/issues)
+- 📧 Email: siasty3@gmail.com
+- 🐛 Issues: [GitHub Issues](https://github.com/siasty3/workspace_embedder/issues)
 - 💬 Discuss: [Frappe Community](https://discuss.frappe.io/)
 
 ## Changelog
@@ -267,4 +267,4 @@ MIT License - see [LICENSE](license.txt) for details.
 
 ---
 
-**Built with ❤️ by TechParts Sp. z o.o.**
+**Built with ❤️ by siasty3@gmail.com**

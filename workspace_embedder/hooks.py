@@ -1,8 +1,8 @@
 app_name = "workspace_embedder"
 app_title = "Frappe Workspace Embedder"
-app_publisher = "TechParts"
+app_publisher = "siasty3@gmail.com"
 app_description = "Advanced workspace page embedding system for Frappe Framework"
-app_email = "admin@techparts.pl"
+app_email = "siasty3@gmail.com"
 app_license = "mit"
 
 # Apps
