@@ -40,7 +40,7 @@ frappe.ui.form.on("Workspace", {
 function show_page_embed_manager(frm) {
 	// Get current page embeds in this workspace
 	frappe.call({
-		method: "ai_agent_demo.workspace_page_embedder.api.list_workspace_embeds",
+		method: "workspace_embedder.frappe_workspace_embedder.api.list_workspace_embeds",
 		args: { workspace_name: frm.doc.name },
 		callback: function (r) {
 			if (r.message) {
@@ -240,7 +240,7 @@ function add_page_embed_to_workspace(frm) {
  */
 function add_existing_embed_to_workspace(frm, embed_name, dialog) {
 	frappe.call({
-		method: "ai_agent_demo.workspace_page_embedder.api.add_embed_to_workspace",
+		method: "workspace_embedder.frappe_workspace_embedder.api.add_embed_to_workspace",
 		args: {
 			workspace_name: frm.doc.name,
 			embed_name: embed_name,
@@ -296,7 +296,7 @@ function create_and_add_embed_to_workspace(frm, values, dialog) {
  */
 function show_current_embeds_info(frm) {
 	frappe.call({
-		method: "ai_agent_demo.workspace_page_embedder.api.list_workspace_embeds",
+		method: "workspace_embedder.frappe_workspace_embedder.api.list_workspace_embeds",
 		args: { workspace_name: frm.doc.name },
 		callback: function (r) {
 			if (r.message && r.message.length > 0) {
@@ -323,7 +323,7 @@ window.remove_embed_from_workspace = function (workspace_name, embed_name) {
 		__('Remove page embed "{0}" from workspace "{1}"?', [embed_name, workspace_name]),
 		function () {
 			frappe.call({
-				method: "ai_agent_demo.workspace_page_embedder.api.remove_embed_from_workspace",
+				method: "workspace_embedder.frappe_workspace_embedder.api.remove_embed_from_workspace",
 				args: {
 					workspace_name: workspace_name,
 					embed_name: embed_name,

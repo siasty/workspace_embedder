@@ -29,13 +29,7 @@ frappe.ui.form.on("Page Embed", {
 			__("Actions")
 		);
 
-		frm.add_custom_button(
-			__("Add to Workspace"),
-			function () {
-				add_to_workspace(frm);
-			},
-			__("Actions")
-		);
+		// Auto-add to workspace functionality moved to after_save method in Python
 
 		frm.add_custom_button(
 			__("Generate CSS Template"),
@@ -295,74 +289,4 @@ function add_help_text(frm) {
 	);
 }
 
-/**
- * Add page embed to a workspace
- */
-function add_to_workspace(frm) {
-	if (!frm.doc.name) {
-		frappe.msgprint(__("Please save the Page Embed first"));
-		return;
-	}
-
-	if (!frm.doc.enabled) {
-		frappe.msgprint(__("Please enable the Page Embed first"));
-		return;
-	}
-
-	const d = new frappe.ui.Dialog({
-		title: __("Add to Workspace"),
-		fields: [
-			{
-				fieldname: "workspace",
-				fieldtype: "Link",
-				label: __("Select Workspace"),
-				options: "Workspace",
-				reqd: 1,
-				get_query: function () {
-					return {
-						filters: {
-							public: 1,
-						},
-					};
-				},
-			},
-			{
-				fieldname: "section_break",
-				fieldtype: "Section Break",
-			},
-			{
-				fieldname: "info",
-				fieldtype: "HTML",
-				options: `
-                    <div class="alert alert-info">
-                        <strong>Note:</strong> This will create a Custom HTML Block and add it to the selected workspace.
-                        The page embed will appear as a new section in the workspace.
-                    </div>
-                `,
-			},
-		],
-		primary_action_label: __("Add to Workspace"),
-		primary_action: function (values) {
-			frappe.call({
-				method: "workspace_page_embedder.api.add_embed_to_workspace",
-				args: {
-					workspace_name: values.workspace,
-					embed_name: frm.doc.name,
-				},
-				callback: function (r) {
-					if (r.message && r.message.success) {
-						frappe.msgprint({
-							message:
-								r.message.message +
-								`<br><br><a href="/app/workspace/${values.workspace}" target="_blank">View Workspace</a>`,
-							title: __("Success"),
-							indicator: "green",
-						});
-						d.hide();
-					}
-				},
-			});
-		},
-	});
-	d.show();
-}
+// add_to_workspace function removed - auto-add functionality moved to server-side after_save method

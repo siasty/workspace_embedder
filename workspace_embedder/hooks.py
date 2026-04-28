@@ -27,8 +27,9 @@ app_license = "mit"
 # include js, css files in header of desk.html
 app_include_css = ["/assets/workspace_embedder/css/page_embed.css"]
 app_include_js = [
-	"/assets/workspace_embedder/js/page_embed.js",
-	"/assets/workspace_embedder/js/workspace_extensions.js",
+	"/assets/workspace_embedder/js/test.js?v=20260415_7",
+	"/assets/workspace_embedder/js/page_embed.js?v=20260415_7",
+	"/assets/workspace_embedder/js/workspace_extensions.js?v=20260415_19",
 ]
 
 # include js, css files in header of web template
@@ -43,11 +44,14 @@ app_include_js = [
 # webform_include_css = {"doctype": "public/css/doctype.css"}
 
 # include js in page
-# page_js = {"page" : "public/js/file.js"}
+page_js = {"workspace" : "public/js/workspace_extensions.js?v=20260415_6"}
 
 # include js in doctype views
 doctype_js = {
-	"Workspace": "workspace_embedder/frappe_workspace_embedder/doctype/workspace_extension/workspace_extension.js"
+	"Workspace": [
+		"workspace_embedder/frappe_workspace_embedder/doctype/workspace_extension/workspace_extension.js",
+		"public/js/workspace_extensions.js"
+	]
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -74,6 +78,10 @@ doctype_js = {
 
 # automatically create page for each record of this doctype
 # website_generators = ["Web Page"]
+
+# Website Routes
+# --------------
+# Removed complex embedding routes - using simple iframe approach instead
 
 # Fixtures
 # --------

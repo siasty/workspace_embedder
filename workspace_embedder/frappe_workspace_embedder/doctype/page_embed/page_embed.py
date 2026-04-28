@@ -34,6 +34,10 @@ class PageEmbed(Document):
 		self.sanitize_custom_code()
 		self.validate_workspace()
 
+	# Removed complex auto-add logic - using JavaScript injection approach instead
+
+	# Complex auto-add/remove methods removed - using JavaScript injection approach instead
+
 	def validate_target_page(self):
 		"""Ensure target page exists and is accessible."""
 		if not self.target_page:
@@ -138,11 +142,8 @@ class PageEmbed(Document):
 		if not self.has_embed_permission():
 			return f'<div class="alert alert-danger">Access denied to page embed "{self.embed_name}"</div>'
 
-		# Use dedicated embed page for ai-agent-demo, fallback to regular for others
-		if self.target_page == "ai-agent-demo":
-			page_url = get_url("/ai_agent_embed")
-		else:
-			page_url = get_url(f"/app/{self.target_page}")
+		# Generate proper page URL for embedding
+		page_url = get_url(f"/app/{self.target_page}")
 
 		# Build iframe attributes
 		iframe_attrs = {
