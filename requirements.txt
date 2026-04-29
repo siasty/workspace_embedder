@@ -1,0 +1,2 @@
+# Workspace Embedder has no Python runtime dependencies.
+# The integration is implemented entirely in client-side JS/CSS.

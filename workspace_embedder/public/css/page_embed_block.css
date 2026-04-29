@@ -1,0 +1,90 @@
+/*
+ * Workspace Embedder — page_embed block
+ *
+ * Hides the desk shell that frappe.ui.make_app_page injects (page-head,
+ * breadcrumbs, page-footer) when a Page is rendered inside a workspace
+ * block, so the body of the page renders inline without duplicating the
+ * surrounding chrome.
+ */
+
+.workspace-page-embed .page-embed-widget {
+	position: relative;
+	overflow: hidden;
+}
+
+.workspace-page-embed .page-embed-host {
+	width: 100%;
+	min-height: 120px;
+}
+
+.workspace-page-embed-mount {
+	width: 100%;
+}
+
+.workspace-page-embed-mount .page-head,
+.workspace-page-embed-mount .page-actions,
+.workspace-page-embed-mount .page-footer,
+.workspace-page-embed-mount .navbar,
+.workspace-page-embed-mount .standard-sidebar,
+.workspace-page-embed-mount .layout-side-section,
+.workspace-page-embed-mount .breadcrumb-container {
+	display: none !important;
+}
+
+.workspace-page-embed-mount .page-container,
+.workspace-page-embed-mount .page-wrapper,
+.workspace-page-embed-mount .container,
+.workspace-page-embed-mount .layout-main,
+.workspace-page-embed-mount .layout-main-section-wrapper,
+.workspace-page-embed-mount .layout-main-section {
+	margin: 0;
+	padding: 0;
+	max-width: 100%;
+	width: 100%;
+}
+
+.workspace-page-embed-mount .layout-main-section {
+	border: none;
+	box-shadow: none;
+	background: transparent;
+}
+
+.page-embed-loading,
+.page-embed-error,
+.page-embed-placeholder {
+	padding: 24px 16px;
+	text-align: center;
+	color: var(--text-muted);
+	font-size: var(--text-base);
+}
+
+.page-embed-error {
+	color: var(--red-500, #c0392b);
+}
+
+.page-embed-loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	min-height: 120px;
+}
+
+.page-embed-spinner {
+	width: 16px;
+	height: 16px;
+	border: 2px solid var(--gray-300, #d1d8dd);
+	border-top-color: var(--blue-500, #4361ee);
+	border-radius: 50%;
+	animation: workspace-page-embed-spin 0.8s linear infinite;
+}
+
+@keyframes workspace-page-embed-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.page-embed-placeholder-message {
+	font-style: italic;
+}
